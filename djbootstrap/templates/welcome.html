@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>welcome</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'images/icon.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+        <style>
+            h2 {
+                text-align: center;
+            }
+
+            h4 {
+                color:red;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Welcome</h2>
+
+        {% if warning %}
+            <h4>Warning: Email Invalidated <br> You can no longer change your info unless you validate your email</h4>
+        {% endif %}
+
+        <h3>
+            Username: {{ username }}<br>
+            Email: {{ email }}
+        </h3>
+
+        <br>
+
+        {% if warning %}
+            <form action="/setemail" method="get">
+                <input type="submit" value="Set new email">
+            </form>
+        {% else %}
+            <form action="/changeinfo" method="get">
+                <input type="submit" value="Change Info">
+            </form>
+        {% endif %}
+        
+        <br>
+        <form action="/logout" method="get">
+            <input type="submit" value="Log Out">
+        </form>
+    </body>
+</html>
