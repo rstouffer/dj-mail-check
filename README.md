@@ -14,7 +14,7 @@ also you need to create a  .env file
 
 in the .env file write the fallowing
 
-`SECRET_KEY= your secret key
+```SECRET_KEY= your secret key
 DEBUG=True
 DATABASE_URL=sqlite:///db.sqlite3 
 
@@ -25,7 +25,7 @@ EMAIL_HOST=ex: smtp.gmail.com
 EMAIL_HOST_USER=your host email
 EMAIL_HOST_PASSWORD=your host password
 EMAIL_PORT=your port
-EMAIL_USE_TLS=True`
+EMAIL_USE_TLS=True```
 
 ## setup database
 
