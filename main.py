@@ -2,19 +2,21 @@ from croniter import croniter
 from datetime import datetime
 import send, time, os
 
-starttime = time.time()
+cts = ['* * * * *', '*/2 * * * *']
 
-base = datetime.now()
+iters = []
+nextTimes = []
 
-iter = croniter('* * * * *', base)
-
-nextTime = iter.get_next(datetime)
-print(nextTime)
+for ct in cts:
+    iters.append(croniter(ct, datetime.now()))
+    nextTimes.append(iters[-1].get_next(datetime))
 
 while True:
-    if datetime.now() > nextTime:
-        nextTime = iter.get_next(datetime)
-        print(nextTime)
+    for i in range(len(nextTimes)):
+        if datetime.now() > nextTimes[i]:
+            nextTimes[i] = iters[i].get_next(datetime)
+            print(nextTimes[i])
+
 
 # def job():
 #     global starttime
