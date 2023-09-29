@@ -3,9 +3,6 @@ from datetime import datetime
 import send, time, os
 import mariadb
 import sys
-from dotenv import load_dotenv
-
-load_dotenv()
 
 def getConn():
     try:
@@ -26,8 +23,7 @@ nextTime = datetime(2999,12,31,23,59,59)
 ttrant = []
 def getTasks():
     global nextTime
-    global ttrant 
-    global conn
+    global ttrant
 
     #set the next time to max
 
@@ -52,6 +48,9 @@ def getTasks():
         elif (testTime == nextTime):
             print('found same', nextTime)
             ttrant.append(row)
+    
+    cursor.close()
+    conn.close()
 #init tasks
 getTasks()
 
@@ -63,15 +62,4 @@ while True:
         
 
 
-# def job():
-#     global starttime
-#     starttime = time.time()
-
-#     send.send("smtp.gmail.com", 587, os.environ.get("EMAIL_HOST_USER"), os.environ.get("EMAIL_HOST_PASSWORD"), "hi", [os.environ.get("EMAIL_HOST_USER")], "test")
-    
-
-
-
-# starttime = time.time()
-# while True:
-#     print(f"{time.time() - starttime: .2f}", end="\r")
+# send.send("smtp.gmail.com", 587, os.environ.get("EMAIL_HOST_USER"), os.environ.get("EMAIL_HOST_PASSWORD"), "hi", [os.environ.get("EMAIL_HOST_USER")], "test")
